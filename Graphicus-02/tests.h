@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include "canevas.h"
+#include "rectangle.h"
 
 using namespace std;
 

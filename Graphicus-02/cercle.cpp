@@ -48,3 +48,7 @@ void Cercle::setAncrage(Coordonnee ancrage)
 {
     this->ancrage = ancrage;
 }
+
+Cercle::~Cercle()
+{
+}

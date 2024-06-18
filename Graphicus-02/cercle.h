@@ -27,7 +27,9 @@ public:
 
     void setRayon(int rayon);
     void setAncrage(Coordonnee ancrage);
-    
+
+    ~Cercle();
+
 private:
     int _rayon;
 };

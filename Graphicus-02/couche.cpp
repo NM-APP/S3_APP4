@@ -10,4 +10,47 @@
 
 #include "couche.h"
 
-// Implementation a faire...
+Couche::Couche()
+{
+    std::cout << "Constructeur par défault de couche." << endl;
+}
+
+bool Couche::ajouterForme(Forme* formes)
+{
+    return false;
+}
+
+Forme* Couche::supprimerForme(int index)
+{
+    return nullptr;
+}
+
+Forme* Couche::getForme(int index)
+{
+    return nullptr;
+}
+
+double Couche::aire()
+{
+    return 0.0;
+}
+
+bool Couche::translater(int deltaX, int deltaY)
+{
+    return false;
+}
+
+bool Couche::reinitialiser()
+{
+    return false;
+}
+
+bool Couche::changerEtat()
+{
+    return false;
+}
+
+void Couche::afficher(ostream & s)
+{
+    
+}

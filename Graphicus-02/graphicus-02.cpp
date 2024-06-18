@@ -15,6 +15,7 @@ int main()
 {
    Tests tests;
    tests.tests_unitaires_formes();
+   tests.tests_unitaires_couche();
    return 0;
 }
 

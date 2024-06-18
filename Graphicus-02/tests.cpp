@@ -13,6 +13,7 @@
 #include "rectangle.h"
 #include "carre.h"
 #include "cercle.h"
+#include "couche.h"
 
 void Tests::tests_unitaires_formes()
 {
@@ -42,6 +43,7 @@ void Tests::tests_unitaires_formes()
 void Tests::tests_unitaires_couche()
 {
    // Tests sur la classe Couche
+   Couche couche;
 }
 
 void Tests::tests_unitaires_vecteur()

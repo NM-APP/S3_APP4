@@ -24,11 +24,6 @@ Rectangle::Rectangle(int largeur, int hauteur, const Coordonnee &ancrage)
     this->ancrage = ancrage;
 }
 
-Rectangle::~Rectangle()
-{
-    std::cout << "Destructeur de Rectangle" << endl;
-}
-
 double Rectangle::aire()
 {
     return _largeur * _hauteur;
@@ -72,4 +67,9 @@ void Rectangle::setHauteur(int hauteur)
 void Rectangle::setAncrage(Coordonnee ancrage)
 {
     this->ancrage = ancrage;
+}
+
+Rectangle::~Rectangle()
+{
+    std::cout << "Destructeur de Rectangle" << endl;
 }

@@ -7,9 +7,31 @@
  * Description: Declaration de la classe carre.
 ********/
 
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef CARRE_H
+#define CARRE_H
 
+#include "forme.h"
 
+class Carre : public Forme
+{
+public:
+    Carre();
+    Carre(int cote, Coordonnee ancrage);
+
+    double aire() override;
+    void afficher(ostream & s) override;
+    
+    // Getters/Setters
+    int getCote();
+    Coordonnee getAncrage();
+
+    void setCote(int cote);
+    void setAncrage(Coordonnee ancrage);
+
+    ~Carre();
+
+private:
+    int _cote;
+};
 
 #endif

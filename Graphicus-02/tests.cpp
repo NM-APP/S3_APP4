@@ -10,10 +10,33 @@
 ********/
 
 #include "tests.h"
+#include "rectangle.h"
+#include "carre.h"
+#include "cercle.h"
 
 void Tests::tests_unitaires_formes()
 {
    // Tests sur les formes geometriques
+   Rectangle rect;
+   rect.afficher(std::cout);
+   Rectangle rect2(3,3,{2,2});
+   rect2.afficher(std::cout);
+
+   std::cout << "\n\n";
+
+   Carre carre;
+   carre.afficher(std::cout);
+   Carre carre2(3,{2,2});
+   carre2.afficher(std::cout);
+
+   std::cout << "\n\n";
+
+   Cercle cercle;
+   cercle.afficher(std::cout);
+   Cercle cercle2(3,{2,2});
+   cercle2.afficher(std::cout);
+
+   std::cout << "\n\n";
 }
 
 void Tests::tests_unitaires_couche()

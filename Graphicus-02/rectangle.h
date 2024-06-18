@@ -14,15 +14,27 @@
 
 class Rectangle : public Forme
 {
-    public:
-        Rectangle(int largeur = 0, int hauteur = 0);
-        ~Rectangle();
-        double aire();
-        void afficher();
+public:
+    Rectangle();
+    Rectangle(int largeur, int hauteur, const Coordonnee& ancrage);
 
-    private:
-        int largeur;
-        int hauteur;
+    double aire() override;
+    void afficher(ostream & s) override;
+
+    // Getters/Setters
+    int getLargeur();
+    int getHauteur();
+    Coordonnee getAncrage();
+
+    void setLargeur(int largeur);
+    void setHauteur(int longueur);
+    void setAncrage(Coordonnee ancrage);
+
+    ~Rectangle();
+
+private:
+    int _largeur;
+    int _hauteur;
 };
 
 #endif

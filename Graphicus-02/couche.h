@@ -32,7 +32,7 @@ class Couche
 
     Couche();
 
-    bool ajouterForme(Forme* formes);
+    bool ajouterForme(Forme* forme);
     Forme* supprimerForme(int index);
     Forme* getForme(int index);
     double aire();

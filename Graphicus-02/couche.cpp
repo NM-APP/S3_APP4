@@ -15,9 +15,9 @@ Couche::Couche()
     std::cout << "Constructeur par défault de couche." << endl;
 }
 
-bool Couche::ajouterForme(Forme* formes)
+bool Couche::ajouterForme(Forme* forme)
 {
-    return false;
+    
 }
 
 Forme* Couche::supprimerForme(int index)

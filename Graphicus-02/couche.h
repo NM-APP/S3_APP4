@@ -25,9 +25,9 @@ class Couche
   public:
     enum class Etat
     {
-        Initialisee,
-        Active,
-        Inactive
+        initialisee,
+        active,
+        inactive
     };
 
     Couche();
@@ -38,14 +38,16 @@ class Couche
     double aire();
     bool translater(int deltaX, int deltaY);
     bool reinitialiser();
-    bool changerEtat();
+    bool changerEtat(Etat etat);
     void afficher(ostream & s);
+    std::string etatToString();
 
   private:
-    Forme* formes[MAX_FORMES];
+    Forme* _formes[MAX_FORMES];
 
     // États :  1->Initialisée   2->Active   3->Inactive
     Etat _etat;
+    int _nombreFormes;
 };
 
 #endif

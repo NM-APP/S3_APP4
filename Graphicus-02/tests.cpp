@@ -44,6 +44,16 @@ void Tests::tests_unitaires_couche()
 {
    // Tests sur la classe Couche
    Couche couche;
+   Carre carre;
+   Cercle cercle;
+
+   couche.changerEtat(Couche::Etat::active);
+   if (couche.ajouterForme(&carre) && couche.ajouterForme(&cercle))
+      couche.afficher(std::cout);
+   else
+   {
+      std::cout << "Impossible d'ajouter une couche, la couche est " << couche.etatToString() <<  endl;
+   }
 }
 
 void Tests::tests_unitaires_vecteur()

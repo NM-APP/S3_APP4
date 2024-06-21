@@ -15,7 +15,7 @@ int main()
 {
    Tests tests;
    
-   tests.tests_application();
+   tests.tests_unitaires_rectangle();
    return 0;
 }
 

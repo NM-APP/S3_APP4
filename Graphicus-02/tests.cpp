@@ -10,6 +10,7 @@
 ********/
 
 #include "tests.h"
+#include "rectangle.h"
 
 void Tests::tests_unitaires_formes()
 {
@@ -57,4 +58,11 @@ void Tests::tests_application_cas_02()
 {
    cout << "TESTS APPLICATION (CAS 02)" << endl;  
     // Il faut ajouter les operations realisant ce scenario de test.
+}
+
+void Tests::tests_unitaires_rectangle()
+{
+	Rectangle rectangle1(10,10,10,10);
+	rectangle1.afficher(std::cout);
+	
 }

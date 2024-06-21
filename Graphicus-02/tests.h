@@ -25,6 +25,8 @@ public:
    void tests_unitaires_canevas();
    void tests_unitaires(); // Appel de tous les tests unitaires
    void tests_unitaires_rectangle();
+   void tests_unitaires_cercle();
+   void tests_unitaires_carre();
 
    // Methodes pour les tests unitaires des classes
    void tests_application_cas_01();

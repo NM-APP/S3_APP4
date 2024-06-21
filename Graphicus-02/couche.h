@@ -15,15 +15,28 @@
 
 const int MAX_FORMES = 5;
 
-// A completer
+#include "forme.h"
 
 class Couche
 {
    public:
-     // Methodes a ajouter
+   	Couche();
+   	~Couche();
+    	bool addForme(Forme *forme);
+    	Forme* supprimeForme(int index);
+    	Forme* getForme(int index);
+    	double getAire();
+    	bool translater(int deltax, int deltay);
+    	bool reinitialiser();
+    	bool changerEtat(int etat);
+    	void afficher(ostream & s);
+    	
    
    private:
-     //Forme formes[MAX_FORMES];
+     Forme *formes[MAX_FORMES];
+     // etat: 0 = Initialisee 1=Active 3=Inactive
+     int _etat;
+     int _nForme;
 };
 
 #endif

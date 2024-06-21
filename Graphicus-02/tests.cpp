@@ -11,6 +11,8 @@
 
 #include "tests.h"
 #include "rectangle.h"
+#include "cercle.h"
+#include "carre.h"
 
 void Tests::tests_unitaires_formes()
 {
@@ -19,7 +21,31 @@ void Tests::tests_unitaires_formes()
 
 void Tests::tests_unitaires_couche()
 {
-   // Tests sur la classe Couche
+   Couche couche1;
+   couche1.changerEtat(1);
+   Carre carre1;
+   Cercle cercle1(1,1,5);
+   Rectangle rectangle1( 10, 10, 5, 10);
+   Cercle cercle2(5, 5, 5);
+   Carre carre2(45, 45, 20);
+   Rectangle rectangle2;
+   Forme *forme1 = &carre1;
+   Forme *forme2 = &cercle1;
+   Forme *forme3 = &rectangle1;
+   Forme *forme4 = &cercle2;
+   Forme *forme5 = &carre2;
+   Forme *forme6 = &rectangle2;
+   couche1.addForme(forme1);
+   couche1.addForme(forme2);
+   couche1.addForme(forme3);
+   couche1.addForme(forme4);
+   couche1.addForme(forme5);
+   couche1.reinitialiser();  
+   couche1.afficher(std::cout);
+   std::cout << "aire totale =" << couche1.getAire(); 
+    
+   
+   
 }
 
 void Tests::tests_unitaires_vecteur()
@@ -62,7 +88,35 @@ void Tests::tests_application_cas_02()
 
 void Tests::tests_unitaires_rectangle()
 {
-	Rectangle rectangle1(10,10,10,10);
+	Rectangle rectangle1;
+	Rectangle rectangle2(10,10,10,10);
 	rectangle1.afficher(std::cout);
+	rectangle2.afficher(std::cout);	
+}
+void Tests::tests_unitaires_cercle()
+{
+	Cercle cercle1;
+	Cercle cercle2(10,10,5);
+	cercle1.afficher(std::cout);
+	cercle2.afficher(std::cout);
 	
 }
+void Tests::tests_unitaires_carre()
+{
+	Carre carre1;
+	Carre carre2(10,10,5);
+	carre1.afficher(std::cout);
+	carre2.afficher(std::cout);
+}
+
+
+
+
+
+
+
+
+
+
+
+

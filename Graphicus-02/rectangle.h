@@ -20,13 +20,13 @@ public:
 	Rectangle();
 	Rectangle(int x, int y, int hauteur, int largeur);
 	~Rectangle();
-	double aire();
-	void afficher( ostream & s );
+	virtual double aire();
+	virtual void afficher( ostream & s );
 	void changerLargeur(int longueur);
 	void changerHauteur(int hauteur);
 	int getLargeur();
 	int getHauteur();
-protected:
+private:
 	int _hauteur;
 	int _largeur;
 	

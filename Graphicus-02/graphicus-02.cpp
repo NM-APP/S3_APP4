@@ -15,7 +15,10 @@ int main()
 {
    Tests tests;
    
-   tests.tests_unitaires_rectangle();
+   //tests.tests_unitaires_rectangle();
+   //tests.tests_unitaires_cercle();
+   //tests.tests_unitaires_carre();
+   tests.tests_unitaires_couche();
    return 0;
 }
 

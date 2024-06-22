@@ -23,10 +23,7 @@ public:
     
     // Getters/Setters
     int getCote();
-    Coordonnee getAncrage();
-
     void setCote(int cote);
-    void setAncrage(Coordonnee ancrage);
 
     ~Carre();
 

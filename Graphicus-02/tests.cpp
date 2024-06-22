@@ -46,14 +46,25 @@ void Tests::tests_unitaires_couche()
    Couche couche;
    Carre carre;
    Cercle cercle;
+   Rectangle rectangle;
+   Carre carre2;
+   Cercle cercle2;
 
    couche.changerEtat(Couche::Etat::active);
-   if (couche.ajouterForme(&carre) && couche.ajouterForme(&cercle))
-      couche.afficher(std::cout);
-   else
-   {
-      std::cout << "Impossible d'ajouter une couche, la couche est " << couche.etatToString() <<  endl;
-   }
+   couche.ajouterForme(&carre);
+   couche.ajouterForme(&carre2);
+   couche.ajouterForme(&cercle);
+   couche.ajouterForme(&cercle2);
+   couche.ajouterForme(&rectangle);
+
+   couche.afficher(std::cout);
+   couche.translater(20,-10);
+   couche.afficher(std::cout);
+   // Test aire()
+   //couche.afficher(std::cout);
+   //std::cout << "Aire totale : " << couche.aire() <<  std::endl;
+   //couche.supprimerForme(3);
+   //std::cout << "Aire totale : " << couche.aire() <<  std::endl;
 }
 
 void Tests::tests_unitaires_vecteur()

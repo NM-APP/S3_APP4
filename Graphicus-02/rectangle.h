@@ -18,17 +18,15 @@ public:
     Rectangle();
     Rectangle(int largeur, int hauteur, const Coordonnee& ancrage);
 
-    double aire() override;
-    void afficher(ostream & s) override;
+    double aire();
+    void afficher(ostream & s);
 
     // Getters/Setters
     int getLargeur();
     int getHauteur();
-    Coordonnee getAncrage();
 
     void setLargeur(int largeur);
     void setHauteur(int longueur);
-    void setAncrage(Coordonnee ancrage);
 
     ~Rectangle();
 

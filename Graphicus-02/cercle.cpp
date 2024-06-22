@@ -3,14 +3,12 @@
 
 Cercle::Cercle()
 {
-    std::cout << "Constructeur par défaut du cercle" << endl;
     this->_rayon = 1;
     this->ancrage = {0,0};
 }
 
 Cercle::Cercle(int rayon, Coordonnee ancrage)
 {
-    std::cout << "Constructeur spécifié du cercle" << endl;
     this->_rayon = rayon;
     this->ancrage = ancrage;
 }
@@ -34,21 +32,10 @@ int Cercle::getRayon()
     return _rayon;
 }
 
-Coordonnee Cercle::getAncrage()
-{
-    return ancrage;
-}
-
 void Cercle::setRayon(int rayon)
 {
     this->_rayon = rayon;
 }
-
-void Cercle::setAncrage(Coordonnee ancrage)
-{
-    this->ancrage = ancrage;
-}
-
 Cercle::~Cercle()
 {
 }

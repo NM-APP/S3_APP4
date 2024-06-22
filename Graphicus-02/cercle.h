@@ -23,10 +23,7 @@ public:
 
     // Getters/Setters
     int getRayon();
-    Coordonnee getAncrage();
-
     void setRayon(int rayon);
-    void setAncrage(Coordonnee ancrage);
 
     ~Cercle();
 

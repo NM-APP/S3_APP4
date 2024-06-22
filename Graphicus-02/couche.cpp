@@ -12,7 +12,6 @@
 
 Couche::Couche()
 {
-    std::cout << "Constructeur par défault de couche." << endl;
     _etat = Etat::initialisee;
     _nombreFormes = 0;
 }
@@ -26,36 +25,63 @@ bool Couche::ajouterForme(Forme* forme)
         return false;
 
     _formes[_nombreFormes] = forme;
-    ++_nombreFormes;
+    _nombreFormes++;
     return true;
 }
 
 Forme* Couche::supprimerForme(int index)
 {
-    // Pas Fini
-    //if(index >= 0 || index < MAX_FORMES && _formes[index])
-        
+    if(index >= 0 && index < MAX_FORMES && _formes[index])
+    {
+        Forme* formeSuprimee =  _formes[index];
+
+        for(int i = index; i<_nombreFormes-1; i++)
+        {
+            _formes[i] = _formes[i+1];
+            _formes[i+1] = nullptr;
+        }
+
+        _nombreFormes--;
+        return formeSuprimee;
+    }
     return nullptr;
 }
 
 Forme* Couche::getForme(int index)
 {
-    return _formes[index];
+    if(_formes[index])
+        return _formes[index];
+    return nullptr;
 }
 
 double Couche::aire()
 {
-    return 0.0;
+    double aireTotale = 0;
+
+    for(int i = 0; i<_nombreFormes; i++)
+    {
+        aireTotale = aireTotale + _formes[i]->aire();
+    }
+    return aireTotale;
 }
 
 bool Couche::translater(int deltaX, int deltaY)
 {
-    return false;
+    for(int i = 0; i<_nombreFormes; i++)
+    {
+        _formes[i]->translater(deltaX, deltaY);
+    }
+    return true;
 }
 
 bool Couche::reinitialiser()
 {
-    return false;
+    for(int i = 0; i<MAX_FORMES; i++)
+    {
+        _formes[i] = nullptr;
+    }
+    changerEtat(Couche::Etat::initialisee);
+    return true;
 }
 
 bool Couche::changerEtat(Etat etat)

@@ -10,7 +10,6 @@
 
 Rectangle::Rectangle()
 {
-    std::cout << "Constructeur par défaut du rectangle" << endl;
     this->_largeur = 1;
     this->_hauteur = 1;
     this->ancrage = {0,0};
@@ -18,7 +17,6 @@ Rectangle::Rectangle()
 
 Rectangle::Rectangle(int largeur, int hauteur, const Coordonnee &ancrage)
 {
-    std::cout << "Constructeur spécifié du rectangle" << endl;
     this->_largeur = largeur;
     this->_hauteur = hauteur;
     this->ancrage = ancrage;
@@ -49,11 +47,6 @@ int Rectangle::getHauteur()
     return this->_hauteur;
 }
 
-Coordonnee Rectangle::getAncrage()
-{
-    return this->ancrage;
-}
-
 void Rectangle::setLargeur(int largeur)
 {
     this->_largeur = largeur;
@@ -62,11 +55,6 @@ void Rectangle::setLargeur(int largeur)
 void Rectangle::setHauteur(int hauteur)
 {
     this->_hauteur = hauteur;
-}
-
-void Rectangle::setAncrage(Coordonnee ancrage)
-{
-    this->ancrage = ancrage;
 }
 
 Rectangle::~Rectangle()

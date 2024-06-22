@@ -13,6 +13,7 @@
 #define CANEVAS_H
 
 #include <iostream>
+#include "vecteur.h"
 #include "forme.h"
 #include "couche.h"
 
@@ -40,9 +41,9 @@ public:
    bool translater(int deltaX, int deltaY);
    void afficher(ostream & s);
 
-private:   
-   // A completer (vecteur...)
-   
+private:
+   Vecteur _canevas;
+   Couche* _coucheActive;
 };
 
 #endif

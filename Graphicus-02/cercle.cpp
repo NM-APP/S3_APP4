@@ -22,7 +22,7 @@ void Cercle::afficher(ostream &s)
 {
         s << "Cercle (x=" << ancrage.x  
                     << ", y=" << ancrage.y 
-                    << ", l=" << _rayon
+                    << ", r=" << _rayon
                     << ", aire=" << aire() 
                     << ")" << endl;
 }

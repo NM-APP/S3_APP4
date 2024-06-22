@@ -25,7 +25,8 @@ class Vecteur
         void afficher(ostream & s);
 
         // Getters/Setters
-        int getCapacite();
+        size_t getTaille();
+        size_t getCapacite();
         Couche* get(size_t index);
 
         ~Vecteur();
@@ -33,7 +34,7 @@ class Vecteur
     private:
         static constexpr size_t _initialCapacity = 2;
         size_t _capacite;
-        size_t _nombreElement;
+        size_t _taille;
         Couche** _vecteur;
         
         void _doublerCapacite();

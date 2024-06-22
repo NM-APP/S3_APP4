@@ -45,7 +45,7 @@ class Couche
   private:
     Forme* _formes[MAX_FORMES];
 
-    // États :  1->Initialisée   2->Active   3->Inactive
+    // États :  0->Initialisée   1->Active   2->Inactive
     Etat _etat;
     int _nombreFormes;
 };

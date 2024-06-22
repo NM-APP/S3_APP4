@@ -81,6 +81,7 @@ bool Couche::reinitialiser()
         _formes[i] = nullptr;
     }
     changerEtat(Etat::initialisee);
+    _nombreFormes = 0;
     return true;
 }
 
@@ -94,9 +95,12 @@ void Couche::afficher(ostream & s)
 {
     s << "État: " << etatToString() << endl;
 
-    for(int i = 0; i < _nombreFormes; i++)
+    if(_nombreFormes > 0)
     {
-        _formes[i]->afficher(s);
+        for(int i = 0; i < _nombreFormes; i++)
+        {
+            _formes[i]->afficher(s);
+        }
     }
 }
 
@@ -109,7 +113,7 @@ std::string Couche::etatToString()
         case Etat::active:
             return "active";
         case Etat::inactive:
-            return "active";
+            return "inactive";
         default:
             return "inconnu";
     }

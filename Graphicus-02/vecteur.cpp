@@ -11,17 +11,16 @@ Vecteur::Vecteur()
 {
     _vecteur = new Couche*[_initialCapacity];
     _capacite = _initialCapacity;
-    _nombreElement = 0;
+    _taille = 0;
 }
 
 void Vecteur::vider()
 {
-    for(size_t i = 0; i<_nombreElement; i++)
+    for(size_t i = 0; i<_taille; i++)
     {
-        _vecteur[i]->~Couche();
-        _vecteur[i] = nullptr;
+        delete _vecteur[i];
     }
-    _nombreElement = 0;
+    _taille = 0;
     _capacite = _initialCapacity;
     Couche** nouveauTableau = new Couche*[_initialCapacity];
     delete[] _vecteur;
@@ -30,20 +29,20 @@ void Vecteur::vider()
 
 bool Vecteur::isVide()
 {
-    if(_nombreElement == 0)
+    if(_taille == 0)
         return true;
     return false;
 }
 
 bool Vecteur::ajouter(Couche* couche)
 {
-    if(_capacite <= _nombreElement)
+    if(_capacite <= _taille)
     {
         _doublerCapacite();
     }
 
-    _vecteur[_nombreElement] = couche;
-    _nombreElement++;
+    _vecteur[_taille] = couche;
+    _taille++;
 
     return true;
 }
@@ -54,12 +53,12 @@ Couche* Vecteur::supprimer(size_t index)
     {
         Couche* elementSuprime = _vecteur[index];
 
-        for(size_t i = index; i<_nombreElement-1; i++)
+        for(size_t i = index; i<_taille-1; i++)
         {
             _vecteur[i] = _vecteur[i+1];
             _vecteur[i+1] = nullptr;
         }
-        _nombreElement--;
+        _taille--;
         return elementSuprime;
     }
     return nullptr;
@@ -73,21 +72,26 @@ void Vecteur::afficher(ostream & s)
         return;
     }
 
-    for(size_t i = 0; i<_nombreElement; i++)
+    for(size_t i = 0; i<_taille; i++)
     {
         s << "--------- Élément " << i << " ---------" << std::endl;
         _vecteur[i]->afficher(s);
     }
 }
 
-int Vecteur::getCapacite()
+size_t Vecteur::getTaille()
+{
+    return _taille;
+}
+
+size_t Vecteur::getCapacite()
 {
     return _capacite;
 }
 
 Couche* Vecteur::get(size_t index)
 {
-    if(index < _nombreElement && _vecteur[index])
+    if(index < _taille && _vecteur[index])
         return _vecteur[index];
     return nullptr;
 }
@@ -97,15 +101,13 @@ void Vecteur::_doublerCapacite()
     _capacite *= 2;
     Couche** vecteurDouble = new Couche*[_capacite];
 
-    for(size_t i = 0; i<_nombreElement; i++)
+    for(size_t i = 0; i<_taille; i++)
     {
         vecteurDouble[i] = _vecteur[i];
     }
 
     delete[] _vecteur;
     _vecteur = vecteurDouble;
-
-    cout << "Vecteur doublée, la capacité à passé de " << _capacite/2 << " à " << _capacite << std::endl;
 }
 
 Vecteur::~Vecteur()

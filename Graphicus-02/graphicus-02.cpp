@@ -16,7 +16,10 @@ int main()
    Tests tests;
    //tests.tests_unitaires_formes();
    //tests.tests_unitaires_couche();
-   tests.tests_unitaires_vecteur();
+   //tests.tests_unitaires_vecteur();
+   //tests.tests_unitaires_canevas();
+
+   tests.tests_application_cas_01();
    return 0;
 }
 

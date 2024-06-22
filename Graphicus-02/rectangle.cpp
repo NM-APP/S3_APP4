@@ -59,5 +59,4 @@ void Rectangle::setHauteur(int hauteur)
 
 Rectangle::~Rectangle()
 {
-    std::cout << "Destructeur de Rectangle" << endl;
 }

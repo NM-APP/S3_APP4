@@ -80,7 +80,7 @@ bool Couche::reinitialiser()
     {
         _formes[i] = nullptr;
     }
-    changerEtat(Couche::Etat::initialisee);
+    changerEtat(Etat::initialisee);
     return true;
 }
 

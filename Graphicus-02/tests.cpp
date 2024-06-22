@@ -10,6 +10,7 @@
 ********/
 
 #include "tests.h"
+#include "vecteur.h"
 #include "rectangle.h"
 #include "carre.h"
 #include "cercle.h"
@@ -70,6 +71,39 @@ void Tests::tests_unitaires_couche()
 void Tests::tests_unitaires_vecteur()
 {
    // Tests sur la classe Vecteur
+   Vecteur vecteur;
+
+   Couche couche;
+   Couche couche2;
+
+   Carre carre;
+   Cercle cercle;
+   Rectangle rectangle;
+   Carre carre2;
+   Cercle cercle2;
+
+   couche.changerEtat(Couche::Etat::active);
+   couche.ajouterForme(&carre);
+   couche.ajouterForme(&carre2);
+   couche.ajouterForme(&cercle);
+   couche.ajouterForme(&cercle2);
+   couche.ajouterForme(&rectangle);
+
+   vecteur.ajouter(&couche);
+   vecteur.ajouter(&couche2);
+   vecteur.ajouter(&couche2);
+   vecteur.ajouter(&couche2);
+
+   vecteur.afficher(std::cout);
+
+   vecteur.supprimer(0);
+
+   vecteur.afficher(std::cout);
+
+   vecteur.vider();
+
+   vecteur.afficher(std::cout);
+
 }
 
 void Tests::tests_unitaires_canevas()

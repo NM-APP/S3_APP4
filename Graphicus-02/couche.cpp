@@ -78,6 +78,7 @@ bool Couche::reinitialiser()
 {
     for(int i = 0; i<MAX_FORMES; i++)
     {
+        delete _formes[i];
         _formes[i] = nullptr;
     }
     changerEtat(Etat::initialisee);

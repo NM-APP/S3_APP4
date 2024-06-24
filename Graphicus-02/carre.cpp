@@ -10,7 +10,7 @@ Carre::Carre(int cote, Coordonnee ancrage)
 {
     setLargeur(cote);
     setHauteur(cote);
-    ancrage = ancrage;
+    this->ancrage = ancrage;
 }
 
 void Carre::afficher(ostream &s)

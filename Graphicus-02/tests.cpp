@@ -163,11 +163,8 @@ void Tests::tests_application_cas_01()
 {
    // Définitions des séquences d'échappement pour les couleurs
    const std::string RESET = "\033[0m";
-   const std::string RED = "\033[31m";
-   const std::string GREEN = "\033[32m";
-   const std::string YELLOW = "\033[33m";
-   const std::string BLUE = "\033[34m";
-   const std::string MAGENTA = "\033[35m";
+   const std::string ROUGE = "\033[31m";
+   const std::string VERT = "\033[32m";
    const std::string CYAN = "\033[36m";
 
    std::cout << "TESTS APPLICATION (CAS 01)\n\n";
@@ -176,108 +173,200 @@ void Tests::tests_application_cas_01()
 
    // Étape 1 à 2
    std::cout << "\n" << CYAN << "====================== Étape 1 et 2 ======================" << RESET << "\n";
-   std::cout << GREEN << "Étape 1: Affichage du canevas" << RESET << "\n";
+   std::cout << VERT << "Étape 1: Affichage du canevas" << RESET << "\n";
    canevas.afficher(std::cout);
-   std::cout << GREEN << "\nÉtape 2: Affichage de l'aire totale du canevas" << RESET;
+   std::cout << VERT << "\nÉtape 2: Affichage de l'aire totale du canevas" << RESET;
    std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 3 à 5
    std::cout << "\n" << CYAN << "====================== Étapes 3 à 5 ======================" << RESET << "\n";
-   std::cout << GREEN << "Étape 3: Ajout de 5 couches au canevas" << RESET << "\n";
-   canevas.ajouterCouche();
-   canevas.ajouterCouche();
-   canevas.ajouterCouche();
-   canevas.ajouterCouche();
-   canevas.ajouterCouche();
-   std::cout << GREEN << "Étape 4: Affichage du canevas" << RESET << "\n";
+   std::cout << VERT << "Étape 3: Ajout de 5 couches au canevas" << RESET << "\n";
+   for(int i = 0; i<5; i++)
+   {
+      if(canevas.ajouterCouche())
+         std::cout << "Réussite : Ajout d'une couche vide" << endl;
+      else
+         std::cout << ROUGE << "Échec : Impossible d'ajouter une couche" << RESET << endl;
+   }
+   std::cout << VERT << "Étape 4: Affichage du canevas" << RESET << "\n";
    canevas.afficher(std::cout);
-   std::cout << GREEN << "\nÉtape 5: Affichage de l'aire totale du canevas" << RESET;
+   std::cout << VERT << "\nÉtape 5: Affichage de l'aire totale du canevas" << RESET;
    std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 6 à 9
    std::cout << "\n" << CYAN << "====================== Étapes 6 à 9 ======================" << RESET << "\n";
-   std::cout << GREEN << "Étape 6: Activation de la couche 2 et ajout de formes" << RESET << "\n";
-   canevas.activerCouche(2);
-   canevas.ajouterForme(new Cercle(5, {0, 1}));
-   canevas.ajouterForme(new Carre(6, {1, 2}));
-   canevas.ajouterForme(new Rectangle(4, 9, {2, 3}));
+   std::cout << VERT << "Étape 6: Activation de la couche 2 et ajout de formes" << RESET << "\n";
 
-   std::cout << GREEN << "Étape 7: Activation de la couche 1 et ajout de forme" << RESET << "\n";
-   canevas.activerCouche(1);
-   canevas.ajouterForme(new Rectangle(12, 3, {0, 0}));
+   Cercle* cercle1 = new Cercle(5, {0, 1});
+   Carre* carre1 = new Carre(6, {1, 2});
+   Rectangle* rectangle1 = new Rectangle(4, 9, {2, 3});
 
-   std::cout << GREEN << "Étape 8: Affichage du canevas" << RESET << "\n";
+   if(canevas.activerCouche(2))
+      std::cout << "Réussite : Activation de la couche 2" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 2" << RESET << endl;
+
+   if(canevas.ajouterForme(cercle1))
+      std::cout << "Réussite : Ajout d'un cercle (x=0, y=1, rayon=5)" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter un cercle" << RESET << endl;
+
+   if(canevas.ajouterForme(carre1))
+      std::cout << "Réussite : Ajout d'un carré (x=1, y=2, côté=6)" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter un carré" << RESET << endl;
+
+   if(canevas.ajouterForme(rectangle1))
+      std::cout << "Réussite : Ajout d'un rectangle (x=2, y=3, largeur=4, hauteur=9)" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter un rectangle" << RESET << endl;
+
+   std::cout << VERT << "Étape 7: Activation de la couche 1 et ajout de forme" << RESET << "\n";
+   if(canevas.activerCouche(1))
+      std::cout << "Réussite : Activation de la couche 1" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 1" << RESET << endl;
+
+   Rectangle* rectangle2 = new Rectangle(12, 3, {0, 0});
+
+   if(canevas.ajouterForme(rectangle2))
+      std::cout << "Réussite : Ajout d'un rectangle (x=0, y=0, largeur=12, hauteur=3)" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter un rectangle" << RESET << endl;
+
+   std::cout << VERT << "Étape 8: Affichage du canevas" << RESET << "\n";
    canevas.afficher(std::cout);
-   std::cout << GREEN << "\nÉtape 9: Affichage de l'aire totale du canevas" << RESET;
+   std::cout << VERT << "\nÉtape 9: Affichage de l'aire totale du canevas" << RESET;
    std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 10 à 13
    std::cout << "\n" << CYAN << "====================== Étapes 10 à 13 ======================" << RESET << "\n";
-   std::cout << GREEN << "Étape 10: Activation de la couche 0 et ajout de formes" << RESET << "\n";
-   canevas.activerCouche(0);
-   canevas.ajouterForme(new Rectangle(1, 1, {0, 0}));
-   canevas.ajouterForme(new Carre(1, {0, 0}));
-   canevas.ajouterForme(new Cercle(1, {0, 0}));
+   std::cout << VERT << "Étape 10: Activation de la couche 0 et ajout de formes" << RESET << "\n";
 
-   std::cout << GREEN << "Étape 11: Activation de la couche 2 et application d'une translation de (x=2, y=1)" << RESET << "\n";
-   canevas.activerCouche(2);
-   canevas.translater(2, 1);
+   Cercle* cercle3 = new Cercle(1, {0, 0});
+   Carre* carre3 = new Carre(1, {0, 0});
+   Rectangle* rectangle3 = new Rectangle(1, 1, {0, 0});
 
-   std::cout << GREEN << "Étape 12: Affichage du canevas" << RESET << "\n";
+   if(canevas.activerCouche(0))
+      std::cout << "Réussite : Activation de la couche 0" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 0" << RESET << endl;
+   if(canevas.ajouterForme(rectangle3))
+      std::cout << "Réussite : Ajout d'un rectangle (x=0, y=0, largeur=1, hauteur=1)" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter un rectangle" << RESET << endl;
+
+   if(canevas.ajouterForme(carre3))
+      std::cout << "Réussite : Ajout d'un carré (x=0, y=0, côté=1)" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter un carré" << RESET << endl;
+
+   if(canevas.ajouterForme(cercle3))
+      std::cout << "Réussite : Ajout d'un cercle (x=0, y=0, rayon=1)" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter un cercle" << RESET << endl;
+
+   std::cout << VERT << "Étape 11: Activation de la couche 2 et application d'une translation de (x=2, y=1)" << RESET << "\n";
+   if(canevas.activerCouche(2))
+      std::cout << "Réussite : Activation de la couche 2" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 2" << RESET << endl;
+
+   if(canevas.translater(2, 1))
+      std::cout << "Réussite : Translation de la couche 2" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible de translater la couche 2" << RESET << endl;
+
+   std::cout << VERT << "Étape 12: Affichage du canevas" << RESET << "\n";
    canevas.afficher(std::cout);
-   std::cout << GREEN << "\nÉtape 13: Affichage de l'aire totale du canevas" << RESET;
+   std::cout << VERT << "\nÉtape 13: Affichage de l'aire totale du canevas" << RESET;
    std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 14 à 20
    std::cout << "\n" << CYAN << "====================== Étapes 14 à 20 ======================" << RESET << "\n";
-   std::cout << GREEN << "Étape 14: Activation de la couche 0 et retrait de la deuxième forme" << RESET << "\n";
-   canevas.activerCouche(0);
-   canevas.retirerForme(1);
+   std::cout << VERT << "Étape 14: Activation de la couche 0 et retrait de la deuxième forme" << RESET << "\n";
+   if(canevas.activerCouche(0))
+      std::cout << "Réussite : Activation de la couche 0" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 0" << RESET << endl;
 
-   std::cout << GREEN << "Étape 15: Réinitialisation de la couche 1" << RESET << "\n";
-   canevas.reinitialiserCouche(1);
+   if(canevas.retirerForme(1))
+      std::cout << "Réussite : la deuxième forme (index 1) a bien été retirée" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible de retirer la deuxième forme (index 1)" << RESET << endl;
 
-   std::cout << GREEN << "Étape 16: Activation de la couche 2" << RESET << "\n";
-   canevas.activerCouche(2);
+   std::cout << VERT << "Étape 15: Réinitialisation de la couche 1" << RESET << "\n";
+   if(canevas.reinitialiserCouche(1))
+      std::cout << "Réussite : Réinitialisation de la couche 1" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible de réinitialiser la couche 1" << RESET << endl;
 
-   std::cout << GREEN << "Étape 17: Retrait de la couche 2" << RESET << "\n";
-   canevas.retirerCouche(2);
+   std::cout << VERT << "Étape 16: Activation de la couche 2" << RESET << "\n";
+   if(canevas.activerCouche(2))
+      std::cout << "Réussite : Activation de la couche 2" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 2" << RESET << endl;
 
-   std::cout << GREEN << "Étape 18: Activation de la couche 4" << RESET << "\n";
-   canevas.activerCouche(4);
+   std::cout << VERT << "Étape 17: Retrait de la couche 2" << RESET << "\n";
+   if(canevas.retirerCouche(2))
+      std::cout << "Réussite : la couche 2 a bien été retirée" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible de retirer la couche 2" << RESET << endl;
 
-   std::cout << GREEN << "Étape 19: Affichage du canevas" << RESET << "\n";
+   std::cout << VERT << "Étape 18: Activation de la couche 4" << RESET << "\n";
+   if(canevas.activerCouche(4))
+      std::cout << "Réussite : Activation de la couche 4" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 4" << RESET << endl;
+
+   std::cout << VERT << "Étape 19: Affichage du canevas" << RESET << "\n";
    canevas.afficher(std::cout);
-   std::cout << GREEN << "\nÉtape 20: Affichage de l'aire totale du canevas" << RESET;
+   std::cout << VERT << "\nÉtape 20: Affichage de l'aire totale du canevas" << RESET;
    std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 21 à 23
    std::cout << "\n" << CYAN << "====================== Étapes 21 à 23 ======================" << RESET << "\n";
-   std::cout << GREEN << "Étape 21: Réinitialisation du canevas" << RESET << "\n";
-   canevas.reinitialiser();
-   std::cout << GREEN << "Étape 22: Affichage du canevas" << RESET << "\n";
+   std::cout << VERT << "Étape 21: Réinitialisation du canevas" << RESET << "\n";
+   if(canevas.reinitialiser())
+      std::cout << "Réussite : Réinitialisation du canevas" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible de réinitialiser le canevas" << RESET << endl;
+
+   std::cout << VERT << "Étape 22: Affichage du canevas" << RESET << "\n";
    canevas.afficher(std::cout);
-   std::cout << GREEN << "\nÉtape 23: Affichage de l'aire totale du canevas" << RESET;
+   std::cout << VERT << "\nÉtape 23: Affichage de l'aire totale du canevas" << RESET;
    std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 24 à 27
    std::cout << "\n" << CYAN << "====================== Étapes 24 à 27 ======================" << RESET << "\n";
    
-   std::cout << GREEN << "Étape 24: Activation de la couche 3 et ajout de formes" << RESET << "\n";
+   std::cout << VERT << "Étape 24: Activation de la couche 3 et ajout de formes" << RESET << "\n";
    if(canevas.activerCouche(3))
-      std::cout << "Activation de la couche 3 réussi !" << std::endl;
+      std::cout << "Réussite : Activation de la couche 3" << endl;
    else
-      std::cout << RED << "Impossible d'ajouter la couche 3 !" <<  RESET << std::endl;
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 3" << RESET << endl;
 
-   canevas.ajouterForme(new Carre(10, {10, 10}));
-   canevas.ajouterForme(nullptr);
+   Carre* carre4 = new Carre(10, {10, 10});
 
-   std::cout << GREEN << "Étape 25: Activation de la couche 6" << RESET << "\n";
-   canevas.activerCouche(6);
+   if(canevas.ajouterForme(carre4))
+      std::cout << "Réussite : Ajout d'un carré (x=10, y=10, côté=10)" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter un carré (x=10, y=10, côté=10)" << RESET << endl;
 
-   std::cout << GREEN << "Étape 26: Affichage du canevas" << RESET << "\n";
+   if(canevas.ajouterForme(nullptr))
+      std::cout << "Réussite : Ajout d'une forme nullptr" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'ajouter une forme nullptr" << RESET << endl;
+
+   std::cout << VERT << "Étape 25: Activation de la couche 6" << RESET << "\n";
+   if(canevas.activerCouche(6))
+      std::cout << "Réussite : Activation de la couche 6" << endl;
+   else
+      std::cout << ROUGE << "Échec : Impossible d'activer la couche 6" << RESET << endl;
+
+   std::cout << VERT << "Étape 26: Affichage du canevas" << RESET << "\n";
    canevas.afficher(std::cout);
-   std::cout << GREEN << "\nÉtape 27: Affichage de l'aire totale du canevas" << RESET;
+   std::cout << VERT << "\nÉtape 27: Affichage de l'aire totale du canevas" << RESET;
    std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 }
 

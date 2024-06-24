@@ -58,7 +58,7 @@ bool Canevas::retirerCouche(int index)
 bool Canevas::reinitialiser()
 {
    _canevas.vider();
-   _coucheActive == nullptr;
+   _coucheActive = nullptr;
    return true;
 }
 
@@ -111,7 +111,7 @@ bool Canevas::desactiverCouche(int index)
 
 bool Canevas::ajouterForme(Forme *p_forme)
 {
-   if(!_coucheActive)
+   if(!_coucheActive || !p_forme)
       return false;
    
    _coucheActive->ajouterForme(p_forme);

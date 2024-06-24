@@ -10,15 +10,14 @@
 #ifndef CARRE_H
 #define CARRE_H
 
-#include "forme.h"
+#include "rectangle.h"
 
-class Carre : public Forme
+class Carre : public Rectangle
 {
 public:
     Carre();
     Carre(int cote, Coordonnee ancrage);
 
-    double aire() override;
     void afficher(ostream & s) override;
     
     // Getters/Setters
@@ -26,9 +25,6 @@ public:
     void setCote(int cote);
 
     ~Carre();
-
-private:
-    int _cote;
 };
 
 #endif

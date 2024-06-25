@@ -2,8 +2,8 @@
  * Fichier: canevas.h
  * Auteurs: C.-A. Brunet
  * Date: 13 juin 2024 (creation)
- * Modifie par : ...
- * Date : ...
+ * Modifie par : dumn1101 boum3864
+ * Date : 25 Juin 2024
  * Description: Declaration de la classe Canevas. La classe Canevas gere un 
  *    vecteur de pointeur de couches en accord avec les specifications de Graphicus.
  *    Ce fichier fait partie de la distribution de Graphicus.

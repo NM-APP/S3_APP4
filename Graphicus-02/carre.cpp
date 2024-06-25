@@ -1,3 +1,12 @@
+/********
+ * Fichier: carre.cpp
+ * Auteurs: dumn1101 boum3864
+ * Date: 16 juin 2024 (creation)
+ * Modifie par : ...
+ * Date : ...
+ * Description: Implementation de la classe carre.
+********/
+
 #include "carre.h"
 
 Carre::Carre()

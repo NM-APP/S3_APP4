@@ -1,3 +1,13 @@
+/********
+ * Fichier: cercle.cpp
+ * Auteurs: dumn1101 boum3864
+ * Date: 16 juin 2024 (creation)
+ * Modifie par : ...
+ * Date : ...
+ * Description: Implementation de la classe cercle.
+********/
+
+
 #include "cercle.h"
 #include "math.h"
 

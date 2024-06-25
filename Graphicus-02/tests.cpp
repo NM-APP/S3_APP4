@@ -2,13 +2,15 @@
  * Fichier: tests.cpp
  * Auteurs: C.-A. Brunet
  * Date: 13 juin 2024 (creation)
- * Modifie par : ...
- * Date : ...
+ * Modifie par : dumn1101 boum3864
+ * Date : 25 Juin 2024
  * Description: Implementation des methodes des classes decrites dans
  *    tests.h.  Ce fichier peut etre adapte a vos besoins de tests. 
  *    Ce fichier fait partie de la distribution de Graphicus.
 ********/
 
+#include <iostream>
+#include <fstream>
 #include "tests.h"
 #include "vecteur.h"
 #include "rectangle.h"
@@ -18,54 +20,61 @@
 
 void Tests::tests_unitaires_formes()
 {
-   // Tests sur les formes geometriques
-   Rectangle rect;
-   rect.afficher(std::cout);
-   Rectangle rect2(3,3,{2,2});
-   rect2.afficher(std::cout);
+   Forme* rect = new Rectangle();
+   rect->afficher(std::cout);
+   delete rect;
+
+   Forme* rect2 = new Rectangle(3, 3, {2, 2});
+   rect2->afficher(std::cout);
+   delete rect2;
 
    std::cout << "\n\n";
 
-   Carre carre;
-   carre.afficher(std::cout);
-   Carre carre2(3,{2,2});
-   carre2.afficher(std::cout);
+   Forme* carre = new Carre();
+   carre->afficher(std::cout);
+   delete carre;
+
+   Forme* carre2 = new Carre(3, {2, 2});
+   carre2->afficher(std::cout);
+   delete carre2;
 
    std::cout << "\n\n";
 
-   Cercle cercle;
-   cercle.afficher(std::cout);
-   Cercle cercle2(3,{2,2});
-   cercle2.afficher(std::cout);
+   Forme* cercle = new Cercle();
+   cercle->afficher(std::cout);
+   delete cercle;
+
+   Forme* cercle2 = new Cercle(3, {2, 2});
+   cercle2->afficher(std::cout);
+   delete cercle2;
 
    std::cout << "\n\n";
 }
 
 void Tests::tests_unitaires_couche()
 {
-   // Tests sur la classe Couche
    Couche couche;
-   Carre carre;
-   Cercle cercle;
-   Rectangle rectangle;
-   Carre carre2;
-   Cercle cercle2;
+
+   Forme* carre = new Carre();
+   Forme* cercle = new Cercle();
+   Forme* rectangle = new Rectangle();
+   Forme* carre2 = new Carre();
+   Forme* cercle2 = new Cercle();
 
    couche.changerEtat(Couche::Etat::active);
-   couche.ajouterForme(&carre);
-   couche.ajouterForme(&carre2);
-   couche.ajouterForme(&cercle);
-   couche.ajouterForme(&cercle2);
-   couche.ajouterForme(&rectangle);
+   couche.ajouterForme(carre);
+   couche.ajouterForme(carre2);
+   couche.ajouterForme(cercle);
+   couche.ajouterForme(cercle2);
+   couche.ajouterForme(rectangle);
 
    couche.afficher(std::cout);
-   couche.translater(20,-10);
+   couche.translater(20, -10);
    couche.afficher(std::cout);
-   // Test aire()
-   //couche.afficher(std::cout);
-   //std::cout << "Aire totale : " << couche.aire() <<  std::endl;
-   //couche.supprimerForme(3);
-   //std::cout << "Aire totale : " << couche.aire() <<  std::endl;
+
+   couche.reinitialiser();
+
+   rectangle->afficher(std::cout);
 }
 
 void Tests::tests_unitaires_vecteur()
@@ -161,217 +170,339 @@ void Tests::tests_application()
 
 void Tests::tests_application_cas_01()
 {
-   // Définitions des séquences d'échappement pour les couleurs
-   const std::string RESET = "\033[0m";
-   const std::string ROUGE = "\033[31m";
-   const std::string VERT = "\033[32m";
-   const std::string CYAN = "\033[36m";
+   ofstream myfile;
+   myfile.open ("resultats_tests_cas_01.txt");
 
-   std::cout << "TESTS APPLICATION (CAS 01)\n\n";
+   myfile << "TESTS APPLICATION (CAS 01)\n\n";
 
    Canevas canevas;
 
    // Étape 1 à 2
-   std::cout << "\n" << CYAN << "====================== Étape 1 et 2 ======================" << RESET << "\n";
-   std::cout << VERT << "Étape 1: Affichage du canevas" << RESET << "\n";
-   canevas.afficher(std::cout);
-   std::cout << VERT << "\nÉtape 2: Affichage de l'aire totale du canevas" << RESET;
-   std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
+   myfile << "\n====================== Étape 1 et 2 ======================\n";
+   myfile << "Étape 1: Affichage du canevas\n";
+   canevas.afficher(myfile);
+   myfile << "\nÉtape 2: Affichage de l'aire totale du canevas";
+   myfile << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 3 à 5
-   std::cout << "\n" << CYAN << "====================== Étapes 3 à 5 ======================" << RESET << "\n";
-   std::cout << VERT << "Étape 3: Ajout de 5 couches au canevas" << RESET << "\n";
+   myfile << "\n====================== Étapes 3 à 5 ======================\n";
+   myfile << "Étape 3: Ajout de 5 couches au canevas\n";
    for(int i = 0; i<5; i++)
    {
       if(canevas.ajouterCouche())
-         std::cout << "Réussite : Ajout d'une couche vide" << endl;
+         myfile << "Réussite : Ajout d'une couche vide" << endl;
       else
-         std::cout << ROUGE << "Échec : Impossible d'ajouter une couche" << RESET << endl;
+         myfile << "Échec : Impossible d'ajouter une couche" << endl;
    }
-   std::cout << VERT << "Étape 4: Affichage du canevas" << RESET << "\n";
-   canevas.afficher(std::cout);
-   std::cout << VERT << "\nÉtape 5: Affichage de l'aire totale du canevas" << RESET;
-   std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
+   myfile << "Étape 4: Affichage du canevas\n";
+   canevas.afficher(myfile);
+   myfile << "\nÉtape 5: Affichage de l'aire totale du canevas";
+   myfile << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 6 à 9
-   std::cout << "\n" << CYAN << "====================== Étapes 6 à 9 ======================" << RESET << "\n";
-   std::cout << VERT << "Étape 6: Activation de la couche 2 et ajout de formes" << RESET << "\n";
+   myfile << "\n====================== Étapes 6 à 9 ======================\n";
+   myfile << "Étape 6: Activation de la couche 2 et ajout de formes\n";
 
    Cercle* cercle1 = new Cercle(5, {0, 1});
    Carre* carre1 = new Carre(6, {1, 2});
    Rectangle* rectangle1 = new Rectangle(4, 9, {2, 3});
 
    if(canevas.activerCouche(2))
-      std::cout << "Réussite : Activation de la couche 2" << endl;
+      myfile << "Réussite : Activation de la couche 2" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 2" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 2" << endl;
 
    if(canevas.ajouterForme(cercle1))
-      std::cout << "Réussite : Ajout d'un cercle (x=0, y=1, rayon=5)" << endl;
+      myfile << "Réussite : Ajout d'un cercle (x=0, y=1, rayon=5)" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter un cercle" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter un cercle" << endl;
 
    if(canevas.ajouterForme(carre1))
-      std::cout << "Réussite : Ajout d'un carré (x=1, y=2, côté=6)" << endl;
+      myfile << "Réussite : Ajout d'un carré (x=1, y=2, côté=6)" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter un carré" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter un carré" << endl;
 
    if(canevas.ajouterForme(rectangle1))
-      std::cout << "Réussite : Ajout d'un rectangle (x=2, y=3, largeur=4, hauteur=9)" << endl;
+      myfile << "Réussite : Ajout d'un rectangle (x=2, y=3, largeur=4, hauteur=9)" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter un rectangle" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter un rectangle" << endl;
 
-   std::cout << VERT << "Étape 7: Activation de la couche 1 et ajout de forme" << RESET << "\n";
+   myfile << "Étape 7: Activation de la couche 1 et ajout de forme\n";
    if(canevas.activerCouche(1))
-      std::cout << "Réussite : Activation de la couche 1" << endl;
+      myfile << "Réussite : Activation de la couche 1" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 1" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 1" << endl;
 
    Rectangle* rectangle2 = new Rectangle(12, 3, {0, 0});
 
    if(canevas.ajouterForme(rectangle2))
-      std::cout << "Réussite : Ajout d'un rectangle (x=0, y=0, largeur=12, hauteur=3)" << endl;
+      myfile << "Réussite : Ajout d'un rectangle (x=0, y=0, largeur=12, hauteur=3)" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter un rectangle" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter un rectangle" << endl;
 
-   std::cout << VERT << "Étape 8: Affichage du canevas" << RESET << "\n";
-   canevas.afficher(std::cout);
-   std::cout << VERT << "\nÉtape 9: Affichage de l'aire totale du canevas" << RESET;
-   std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
+   myfile << "Étape 8: Affichage du canevas\n";
+   canevas.afficher(myfile);
+   myfile << "\nÉtape 9: Affichage de l'aire totale du canevas";
+   myfile << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 10 à 13
-   std::cout << "\n" << CYAN << "====================== Étapes 10 à 13 ======================" << RESET << "\n";
-   std::cout << VERT << "Étape 10: Activation de la couche 0 et ajout de formes" << RESET << "\n";
+   myfile << "\n====================== Étapes 10 à 13 ======================\n";
+   myfile << "Étape 10: Activation de la couche 0 et ajout de formes\n";
 
    Cercle* cercle3 = new Cercle(1, {0, 0});
    Carre* carre3 = new Carre(1, {0, 0});
    Rectangle* rectangle3 = new Rectangle(1, 1, {0, 0});
 
    if(canevas.activerCouche(0))
-      std::cout << "Réussite : Activation de la couche 0" << endl;
+      myfile << "Réussite : Activation de la couche 0" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 0" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 0" << endl;
    if(canevas.ajouterForme(rectangle3))
-      std::cout << "Réussite : Ajout d'un rectangle (x=0, y=0, largeur=1, hauteur=1)" << endl;
+      myfile << "Réussite : Ajout d'un rectangle (x=0, y=0, largeur=1, hauteur=1)" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter un rectangle" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter un rectangle" << endl;
 
    if(canevas.ajouterForme(carre3))
-      std::cout << "Réussite : Ajout d'un carré (x=0, y=0, côté=1)" << endl;
+      myfile << "Réussite : Ajout d'un carré (x=0, y=0, côté=1)" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter un carré" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter un carré" << endl;
 
    if(canevas.ajouterForme(cercle3))
-      std::cout << "Réussite : Ajout d'un cercle (x=0, y=0, rayon=1)" << endl;
+      myfile << "Réussite : Ajout d'un cercle (x=0, y=0, rayon=1)" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter un cercle" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter un cercle" << endl;
 
-   std::cout << VERT << "Étape 11: Activation de la couche 2 et application d'une translation de (x=2, y=1)" << RESET << "\n";
+   myfile << "Étape 11: Activation de la couche 2 et application d'une translation de (x=2, y=1)\n";
    if(canevas.activerCouche(2))
-      std::cout << "Réussite : Activation de la couche 2" << endl;
+      myfile << "Réussite : Activation de la couche 2" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 2" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 2" << endl;
 
    if(canevas.translater(2, 1))
-      std::cout << "Réussite : Translation de la couche 2" << endl;
+      myfile << "Réussite : Translation de la couche 2" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible de translater la couche 2" << RESET << endl;
+      myfile << "Échec : Impossible de translater la couche 2" << endl;
 
-   std::cout << VERT << "Étape 12: Affichage du canevas" << RESET << "\n";
-   canevas.afficher(std::cout);
-   std::cout << VERT << "\nÉtape 13: Affichage de l'aire totale du canevas" << RESET;
-   std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
+   myfile << "Étape 12: Affichage du canevas\n";
+   canevas.afficher(myfile);
+   myfile << "\nÉtape 13: Affichage de l'aire totale du canevas";
+   myfile << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 14 à 20
-   std::cout << "\n" << CYAN << "====================== Étapes 14 à 20 ======================" << RESET << "\n";
-   std::cout << VERT << "Étape 14: Activation de la couche 0 et retrait de la deuxième forme" << RESET << "\n";
+   myfile << "\n====================== Étapes 14 à 20 ======================\n";
+   myfile << "Étape 14: Activation de la couche 0 et retrait de la deuxième forme\n";
    if(canevas.activerCouche(0))
-      std::cout << "Réussite : Activation de la couche 0" << endl;
+      myfile << "Réussite : Activation de la couche 0" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 0" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 0" << endl;
 
    if(canevas.retirerForme(1))
-      std::cout << "Réussite : la deuxième forme (index 1) a bien été retirée" << endl;
+      myfile << "Réussite : la deuxième forme (index 1) a bien été retirée" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible de retirer la deuxième forme (index 1)" << RESET << endl;
+      myfile << "Échec : Impossible de retirer la deuxième forme (index 1)" << endl;
 
-   std::cout << VERT << "Étape 15: Réinitialisation de la couche 1" << RESET << "\n";
+   myfile << "Étape 15: Réinitialisation de la couche 1\n";
    if(canevas.reinitialiserCouche(1))
-      std::cout << "Réussite : Réinitialisation de la couche 1" << endl;
+      myfile << "Réussite : Réinitialisation de la couche 1" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible de réinitialiser la couche 1" << RESET << endl;
+      myfile << "Échec : Impossible de réinitialiser la couche 1" << endl;
 
-   std::cout << VERT << "Étape 16: Activation de la couche 2" << RESET << "\n";
+   myfile << "Étape 16: Activation de la couche 2\n";
    if(canevas.activerCouche(2))
-      std::cout << "Réussite : Activation de la couche 2" << endl;
+      myfile << "Réussite : Activation de la couche 2" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 2" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 2" << endl;
 
-   std::cout << VERT << "Étape 17: Retrait de la couche 2" << RESET << "\n";
+   myfile << "Étape 17: Retrait de la couche 2\n";
    if(canevas.retirerCouche(2))
-      std::cout << "Réussite : la couche 2 a bien été retirée" << endl;
+      myfile << "Réussite : la couche 2 a bien été retirée" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible de retirer la couche 2" << RESET << endl;
+      myfile << "Échec : Impossible de retirer la couche 2" << endl;
 
-   std::cout << VERT << "Étape 18: Activation de la couche 4" << RESET << "\n";
+   myfile << "Étape 18: Activation de la couche 4\n";
    if(canevas.activerCouche(4))
-      std::cout << "Réussite : Activation de la couche 4" << endl;
+      myfile << "Réussite : Activation de la couche 4" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 4" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 4" << endl;
 
-   std::cout << VERT << "Étape 19: Affichage du canevas" << RESET << "\n";
-   canevas.afficher(std::cout);
-   std::cout << VERT << "\nÉtape 20: Affichage de l'aire totale du canevas" << RESET;
-   std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
+   myfile << "Étape 19: Affichage du canevas\n";
+   canevas.afficher(myfile);
+   myfile << "\nÉtape 20: Affichage de l'aire totale du canevas";
+   myfile << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 21 à 23
-   std::cout << "\n" << CYAN << "====================== Étapes 21 à 23 ======================" << RESET << "\n";
-   std::cout << VERT << "Étape 21: Réinitialisation du canevas" << RESET << "\n";
+   myfile << "\n====================== Étapes 21 à 23 ======================\n";
+   myfile << "Étape 21: Réinitialisation du canevas\n";
    if(canevas.reinitialiser())
-      std::cout << "Réussite : Réinitialisation du canevas" << endl;
+      myfile << "Réussite : Réinitialisation du canevas" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible de réinitialiser le canevas" << RESET << endl;
+      myfile << "Échec : Impossible de réinitialiser le canevas" << endl;
 
-   std::cout << VERT << "Étape 22: Affichage du canevas" << RESET << "\n";
-   canevas.afficher(std::cout);
-   std::cout << VERT << "\nÉtape 23: Affichage de l'aire totale du canevas" << RESET;
-   std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
+   myfile << "Étape 22: Affichage du canevas\n";
+   canevas.afficher(myfile);
+   myfile << "\nÉtape 23: Affichage de l'aire totale du canevas";
+   myfile << "\nAire totale du canevas : " << canevas.aire() << std::endl;
 
    // Étapes 24 à 27
-   std::cout << "\n" << CYAN << "====================== Étapes 24 à 27 ======================" << RESET << "\n";
+   myfile << "\n====================== Étapes 24 à 27 ======================\n";
    
-   std::cout << VERT << "Étape 24: Activation de la couche 3 et ajout de formes" << RESET << "\n";
+   myfile << "Étape 24: Activation de la couche 3 et ajout de formes\n";
    if(canevas.activerCouche(3))
-      std::cout << "Réussite : Activation de la couche 3" << endl;
+      myfile << "Réussite : Activation de la couche 3" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 3" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 3" << endl;
 
    Carre* carre4 = new Carre(10, {10, 10});
 
    if(canevas.ajouterForme(carre4))
-      std::cout << "Réussite : Ajout d'un carré (x=10, y=10, côté=10)" << endl;
+      myfile << "Réussite : Ajout d'un carré (x=10, y=10, côté=10)" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter un carré (x=10, y=10, côté=10)" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter un carré (x=10, y=10, côté=10)" << endl;
 
    if(canevas.ajouterForme(nullptr))
-      std::cout << "Réussite : Ajout d'une forme nullptr" << endl;
+      myfile << "Réussite : Ajout d'une forme nullptr" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'ajouter une forme nullptr" << RESET << endl;
+      myfile << "Échec : Impossible d'ajouter une forme nullptr" << endl;
 
-   std::cout << VERT << "Étape 25: Activation de la couche 6" << RESET << "\n";
+   myfile << "Étape 25: Activation de la couche 6\n";
    if(canevas.activerCouche(6))
-      std::cout << "Réussite : Activation de la couche 6" << endl;
+      myfile << "Réussite : Activation de la couche 6" << endl;
    else
-      std::cout << ROUGE << "Échec : Impossible d'activer la couche 6" << RESET << endl;
+      myfile << "Échec : Impossible d'activer la couche 6" << endl;
 
-   std::cout << VERT << "Étape 26: Affichage du canevas" << RESET << "\n";
-   canevas.afficher(std::cout);
-   std::cout << VERT << "\nÉtape 27: Affichage de l'aire totale du canevas" << RESET;
-   std::cout << "\nAire totale du canevas : " << canevas.aire() << std::endl;
+   myfile << "Étape 26: Affichage du canevas\n";
+   canevas.afficher(myfile);
+   myfile << "\nÉtape 27: Affichage de l'aire totale du canevas";
+   myfile << "\nAire totale du canevas : " << canevas.aire() << std::endl;
+
+   myfile.close();
 }
 
-void Tests::tests_application_cas_02()
-{
-   cout << "TESTS APPLICATION (CAS 02)" << endl;  
-    // Il faut ajouter les operations realisant ce scenario de test.
+void Tests::tests_application_cas_02() {
+    std::ofstream myfile("resultats_tests_cas_02.txt");
+    myfile << "TESTS APPLICATION (CAS 02)\n\n";
+
+    Canevas canevas;
+
+    // Étape 1
+    myfile << "\n====================== Étape 1 ======================\n";
+    myfile << "Étape 1: Ajout de 3 couches au canevas\n";
+    for(int i = 0; i < 3; i++) {
+        if(canevas.ajouterCouche())
+            myfile << "Réussite : Ajout d'une couche vide" << std::endl;
+        else
+            myfile << "Échec : Impossible d'ajouter une couche" << std::endl;
+    }
+
+    // Étape 2
+    myfile << "\n====================== Étape 2 ======================\n";
+    myfile << "Étape 2: Tentative d'ajout de formes à une couche inactive (couche 4)\n";
+
+    Cercle* cercle = new Cercle(10, {5, 5});
+    Carre* carre = new Carre(4, {2, 2});
+
+    if(canevas.activerCouche(4))
+        myfile << "Échec : Activation de la couche 4 (couche non ajoutée)" << std::endl;
+    else
+        myfile << "Réussite : Impossible d'activer la couche 4 (couche non ajoutée)" << std::endl;
+
+    if(canevas.ajouterForme(cercle))
+        myfile << "Échec : Ajout d'un cercle à une couche inactive (couche 4)" << std::endl;
+    else
+        myfile << "Réussite : Impossible d'ajouter un cercle à une couche inactive (couche 4)" << std::endl;
+
+    if(canevas.ajouterForme(carre))
+        myfile << "Échec : Ajout d'un carré à une couche inactive (couche 4)" << std::endl;
+    else
+        myfile << "Réussite : Impossible d'ajouter un carré à une couche inactive (couche 4)" << std::endl;
+
+    // Étape 3
+    myfile << "\n====================== Étape 3 ======================\n";
+    myfile << "Étape 3: Activation de la couche 1 et ajout de formes\n";
+
+    if(canevas.activerCouche(1))
+        myfile << "Réussite : Activation de la couche 1" << std::endl;
+    else
+        myfile << "Échec : Impossible d'activer la couche 1" << std::endl;
+
+    if(canevas.ajouterForme(cercle))
+        myfile << "Réussite : Ajout d'un cercle (x=5, y=5, rayon=10)" << std::endl;
+    else
+        myfile << "Échec : Impossible d'ajouter un cercle" << std::endl;
+
+    if(canevas.ajouterForme(carre))
+        myfile << "Réussite : Ajout d'un carré (x=2, y=2, côté=4)" << std::endl;
+    else
+        myfile << "Échec : Impossible d'ajouter un carré" << std::endl;
+
+    // Étape 4
+    myfile << "\n====================== Étape 4 ======================\n";
+    myfile << "Étape 4: Tentative d'ajout de forme nullptr\n";
+   
+    if(canevas.ajouterForme(nullptr))
+        myfile << "Échec : Ajout d'une forme nullptr" << std::endl;
+    else
+        myfile << "Réussite : Impossible d'ajouter une forme nullptr" << std::endl;
+
+    // Étape 5
+    myfile << "\n====================== Étape 5 ======================\n";
+    myfile << "Étape 5: Affichage du canevas\n";
+    canevas.afficher(myfile);
+
+    // Étape 6
+    myfile << "\n====================== Étape 6 ======================\n";
+    myfile << "Étape 6: Affichage de l'aire totale du canevas\n";
+    myfile << "Aire totale du canevas : " << canevas.aire() << std::endl;
+
+    // Étape 7
+    myfile << "\n====================== Étape 7 ======================\n";
+    myfile << "Étape 7: Activation de la couche 1 et retrait de la première forme\n";
+    if(canevas.activerCouche(1))
+        myfile << "Réussite : Activation de la couche 1" << std::endl;
+    else
+        myfile << "Échec : Impossible d'activer la couche 1" << std::endl;
+
+    if(canevas.retirerForme(0))
+        myfile << "Réussite : la première forme (index 0) a bien été retirée" << std::endl;
+    else
+        myfile << "Échec : Impossible de retirer la première forme (index 0)" << std::endl;
+
+    // Étape 8
+    myfile << "\n====================== Étape 8 ======================\n";
+    myfile << "Étape 8: Tentative de retrait d'une forme à partir d'une couche vide (index 1)\n";
+
+    if(canevas.retirerForme(1))
+        myfile << "Échec : Retrait d'une forme dans une couche vide (index 1)" << std::endl;
+    else
+        myfile << "Réussite : Impossible de retirer une forme dans une couche vide (index 1)" << std::endl;
+
+    // Étape 9
+    myfile << "\n====================== Étape 9 ======================\n";
+    myfile << "Étape 9: Affichage du canevas\n";
+    canevas.afficher(myfile);
+
+    // Étape 10
+    myfile << "\n====================== Étape 10 ======================\n";
+    myfile << "Étape 10: Affichage de l'aire totale du canevas\n";
+    myfile << "Aire totale du canevas : " << canevas.aire() << std::endl;
+
+    // Étape 11
+    myfile << "\n====================== Étape 11 ======================\n";
+    myfile << "Étape 11: Réinitialisation du canevas\n";
+    if(canevas.reinitialiser())
+        myfile << "Réussite : Réinitialisation du canevas" << std::endl;
+    else
+        myfile << "Échec : Impossible de réinitialiser le canevas" << std::endl;
+
+    // Étape 12
+    myfile << "\n====================== Étape 12 ======================\n";
+    myfile << "Étape 12: Affichage du canevas\n";
+    canevas.afficher(myfile);
+
+    // Étape 13
+    myfile << "\n====================== Étape 13 ======================\n";
+    myfile << "Étape 13: Affichage de l'aire totale du canevas\n";
+    myfile << "Aire totale du canevas : " << canevas.aire() << std::endl;
+
+    myfile.close();
 }

@@ -36,10 +36,11 @@ bool Vecteur::isVide()
 
 bool Vecteur::ajouter(Couche* couche)
 {
+    if(!couche)
+        return false;
+
     if(_capacite <= _taille)
-    {
         _doublerCapacite();
-    }
 
     _vecteur[_taille] = couche;
     _taille++;

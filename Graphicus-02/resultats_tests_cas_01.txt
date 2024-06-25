@@ -1,0 +1,139 @@
+TESTS APPLICATION (CAS 01)
+
+
+====================== Étape 1 et 2 ======================
+Étape 1: Affichage du canevas
+----- Aucune couche -----
+
+Étape 2: Affichage de l'aire totale du canevas
+Aire totale du canevas : 0
+
+====================== Étapes 3 à 5 ======================
+Étape 3: Ajout de 5 couches au canevas
+Réussite : Ajout d'une couche vide
+Réussite : Ajout d'une couche vide
+Réussite : Ajout d'une couche vide
+Réussite : Ajout d'une couche vide
+Réussite : Ajout d'une couche vide
+Étape 4: Affichage du canevas
+----- Couche 0 -----
+État: active
+----- Couche 1 -----
+État: initialisee
+----- Couche 2 -----
+État: initialisee
+----- Couche 3 -----
+État: initialisee
+----- Couche 4 -----
+État: initialisee
+
+Étape 5: Affichage de l'aire totale du canevas
+Aire totale du canevas : 0
+
+====================== Étapes 6 à 9 ======================
+Étape 6: Activation de la couche 2 et ajout de formes
+Réussite : Activation de la couche 2
+Réussite : Ajout d'un cercle (x=0, y=1, rayon=5)
+Réussite : Ajout d'un carré (x=1, y=2, côté=6)
+Réussite : Ajout d'un rectangle (x=2, y=3, largeur=4, hauteur=9)
+Étape 7: Activation de la couche 1 et ajout de forme
+Réussite : Activation de la couche 1
+Réussite : Ajout d'un rectangle (x=0, y=0, largeur=12, hauteur=3)
+Étape 8: Affichage du canevas
+----- Couche 0 -----
+État: inactive
+----- Couche 1 -----
+État: active
+Rectangle (x=0, y=0, l=12, h=3, aire=36)
+----- Couche 2 -----
+État: inactive
+Cercle (x=0, y=1, r=5, aire=78.5398)
+Carré (x=1, y=2, c=6, aire=36)
+Rectangle (x=2, y=3, l=4, h=9, aire=36)
+----- Couche 3 -----
+État: initialisee
+----- Couche 4 -----
+État: initialisee
+
+Étape 9: Affichage de l'aire totale du canevas
+Aire totale du canevas : 186.54
+
+====================== Étapes 10 à 13 ======================
+Étape 10: Activation de la couche 0 et ajout de formes
+Réussite : Activation de la couche 0
+Réussite : Ajout d'un rectangle (x=0, y=0, largeur=1, hauteur=1)
+Réussite : Ajout d'un carré (x=0, y=0, côté=1)
+Réussite : Ajout d'un cercle (x=0, y=0, rayon=1)
+Étape 11: Activation de la couche 2 et application d'une translation de (x=2, y=1)
+Réussite : Activation de la couche 2
+Réussite : Translation de la couche 2
+Étape 12: Affichage du canevas
+----- Couche 0 -----
+État: inactive
+Rectangle (x=0, y=0, l=1, h=1, aire=1)
+Carré (x=0, y=0, c=1, aire=1)
+Cercle (x=0, y=0, r=1, aire=3.14159)
+----- Couche 1 -----
+État: inactive
+Rectangle (x=0, y=0, l=12, h=3, aire=36)
+----- Couche 2 -----
+État: active
+Cercle (x=2, y=2, r=5, aire=78.5398)
+Carré (x=3, y=3, c=6, aire=36)
+Rectangle (x=4, y=4, l=4, h=9, aire=36)
+----- Couche 3 -----
+État: initialisee
+----- Couche 4 -----
+État: initialisee
+
+Étape 13: Affichage de l'aire totale du canevas
+Aire totale du canevas : 191.681
+
+====================== Étapes 14 à 20 ======================
+Étape 14: Activation de la couche 0 et retrait de la deuxième forme
+Réussite : Activation de la couche 0
+Réussite : la deuxième forme (index 1) a bien été retirée
+Étape 15: Réinitialisation de la couche 1
+Réussite : Réinitialisation de la couche 1
+Étape 16: Activation de la couche 2
+Réussite : Activation de la couche 2
+Étape 17: Retrait de la couche 2
+Réussite : la couche 2 a bien été retirée
+Étape 18: Activation de la couche 4
+Échec : Impossible d'activer la couche 4
+Étape 19: Affichage du canevas
+----- Couche 0 -----
+État: inactive
+Rectangle (x=0, y=0, l=1, h=1, aire=1)
+Cercle (x=0, y=0, r=1, aire=3.14159)
+----- Couche 1 -----
+État: initialisee
+----- Couche 2 -----
+État: initialisee
+----- Couche 3 -----
+État: initialisee
+
+Étape 20: Affichage de l'aire totale du canevas
+Aire totale du canevas : 4.14159
+
+====================== Étapes 21 à 23 ======================
+Étape 21: Réinitialisation du canevas
+Réussite : Réinitialisation du canevas
+Étape 22: Affichage du canevas
+----- Aucune couche -----
+
+Étape 23: Affichage de l'aire totale du canevas
+Aire totale du canevas : 0
+
+====================== Étapes 24 à 27 ======================
+Étape 24: Activation de la couche 3 et ajout de formes
+Échec : Impossible d'activer la couche 3
+Échec : Impossible d'ajouter un carré (x=10, y=10, côté=10)
+Échec : Impossible d'ajouter une forme nullptr
+Étape 25: Activation de la couche 6
+Échec : Impossible d'activer la couche 6
+Étape 26: Affichage du canevas
+----- Aucune couche -----
+
+Étape 27: Affichage de l'aire totale du canevas
+Aire totale du canevas : 0

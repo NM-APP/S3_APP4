@@ -1,0 +1,78 @@
+TESTS APPLICATION (CAS 02)
+
+
+====================== Étape 1 ======================
+Étape 1: Ajout de 3 couches au canevas
+Réussite : Ajout d'une couche vide
+Réussite : Ajout d'une couche vide
+Réussite : Ajout d'une couche vide
+
+====================== Étape 2 ======================
+Étape 2: Tentative d'ajout de formes à une couche inactive (couche 4)
+Réussite : Impossible d'activer la couche 4 (couche non ajoutée)
+Échec : Ajout d'un cercle à une couche inactive (couche 4)
+Échec : Ajout d'un carré à une couche inactive (couche 4)
+
+====================== Étape 3 ======================
+Étape 3: Activation de la couche 1 et ajout de formes
+Réussite : Activation de la couche 1
+Réussite : Ajout d'un cercle (x=5, y=5, rayon=10)
+Réussite : Ajout d'un carré (x=2, y=2, côté=4)
+
+====================== Étape 4 ======================
+Étape 4: Tentative d'ajout de forme nullptr
+Réussite : Impossible d'ajouter une forme nullptr
+
+====================== Étape 5 ======================
+Étape 5: Affichage du canevas
+----- Couche 0 -----
+État: inactive
+Cercle (x=5, y=5, r=10, aire=314.159)
+Carré (x=2, y=2, c=4, aire=16)
+----- Couche 1 -----
+État: active
+Cercle (x=5, y=5, r=10, aire=314.159)
+Carré (x=2, y=2, c=4, aire=16)
+----- Couche 2 -----
+État: initialisee
+
+====================== Étape 6 ======================
+Étape 6: Affichage de l'aire totale du canevas
+Aire totale du canevas : 660.319
+
+====================== Étape 7 ======================
+Étape 7: Activation de la couche 1 et retrait de la première forme
+Réussite : Activation de la couche 1
+Réussite : la première forme (index 0) a bien été retirée
+
+====================== Étape 8 ======================
+Étape 8: Tentative de retrait d'une forme à partir d'une couche vide (index 1)
+Réussite : Impossible de retirer une forme dans une couche vide (index 1)
+
+====================== Étape 9 ======================
+Étape 9: Affichage du canevas
+----- Couche 0 -----
+État: inactive
+Cercle (x=5, y=5, r=10, aire=314.159)
+Carré (x=2, y=2, c=4, aire=16)
+----- Couche 1 -----
+État: active
+Carré (x=2, y=2, c=4, aire=16)
+----- Couche 2 -----
+État: initialisee
+
+====================== Étape 10 ======================
+Étape 10: Affichage de l'aire totale du canevas
+Aire totale du canevas : 346.159
+
+====================== Étape 11 ======================
+Étape 11: Réinitialisation du canevas
+Réussite : Réinitialisation du canevas
+
+====================== Étape 12 ======================
+Étape 12: Affichage du canevas
+----- Aucune couche -----
+
+====================== Étape 13 ======================
+Étape 13: Affichage de l'aire totale du canevas
+Aire totale du canevas : 0

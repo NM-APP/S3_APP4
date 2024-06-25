@@ -18,8 +18,8 @@ public:
     Cercle();
     Cercle(int rayon, Coordonnee ancrage);
 
-    double aire() override;
-    void afficher(ostream & s) override;
+    double aire();
+    void afficher(ostream & s);
 
     // Getters/Setters
     int getRayon();

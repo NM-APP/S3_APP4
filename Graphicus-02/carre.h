@@ -18,7 +18,7 @@ public:
     Carre();
     Carre(int cote, Coordonnee ancrage);
 
-    void afficher(ostream & s) override;
+    void afficher(ostream & s);
     
     // Getters/Setters
     int getCote();

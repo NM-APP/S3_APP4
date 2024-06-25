@@ -22,7 +22,8 @@ public:
     
     // Getters/Setters
     int getCote();
-    void setCote(int cote);
+
+    void setDimension(int cote);
 
     ~Carre();
 };

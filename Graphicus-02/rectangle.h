@@ -25,12 +25,11 @@ public:
     int getLargeur();
     int getHauteur();
 
-    void setLargeur(int largeur);
-    void setHauteur(int longueur);
+    virtual void setDimension(int largeur, int hauteur);
 
     ~Rectangle();
 
-private:
+protected:
     int _largeur;
     int _hauteur;
 };

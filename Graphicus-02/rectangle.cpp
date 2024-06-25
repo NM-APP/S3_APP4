@@ -47,13 +47,9 @@ int Rectangle::getHauteur()
     return this->_hauteur;
 }
 
-void Rectangle::setLargeur(int largeur)
+void Rectangle::setDimension(int largeur, int hauteur)
 {
     this->_largeur = largeur;
-}
-
-void Rectangle::setHauteur(int hauteur)
-{
     this->_hauteur = hauteur;
 }
 

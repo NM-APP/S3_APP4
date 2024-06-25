@@ -2,14 +2,14 @@
 
 Carre::Carre()
 {
-    setLargeur(1);
+    _largeur = 1;
     ancrage = {0,0};
 }
 
 Carre::Carre(int cote, Coordonnee ancrage)
 {
-    setLargeur(cote);
-    setHauteur(cote);
+    _largeur = cote;
+    _hauteur = cote;
     this->ancrage = ancrage;
 }
 
@@ -27,10 +27,10 @@ int Carre::getCote()
     return getLargeur();
 }
 
-void Carre::setCote(int cote)
+void Carre::setDimension(int cote)
 {
-    setLargeur(cote);
-    setHauteur(cote);
+    _largeur = cote;
+    _hauteur = cote;
 }
 
 Carre::~Carre()
